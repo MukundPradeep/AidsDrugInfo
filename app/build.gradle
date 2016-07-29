@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.example.android.aidsdruginformation"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        debug {
+            storeFile file("mydebugkey.keystore")
+            storePassword "hivpassword"
+            keyAlias "hivkey"
+            keyPassword "hivpassword"
+        }
+        release {
+            storeFile file("mydebugkey.keystore")
+            storePassword "hivpassword"
+            keyAlias "hivkey"
+            keyPassword "hivpassword"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug{
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'com.google.android.gms:play-services-analytics:9.0.0'
+    compile 'com.google.firebase:firebase-ads:9.0.0'
+    compile 'com.android.support:design:23.3.0'
+}
+
+apply plugin: 'com.google.gms.google-services'
